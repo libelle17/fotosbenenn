@@ -511,6 +511,7 @@ Function doPatNameChange(frm As fürIcon)
     Call ConstrFestleg(frm)
    End If
    zwi = QuelCStr
+#If False Then
    Call rEi.Open("SELECT * FROM `eintraege` where pat_id = " & Pat_id & " and art like 'usdm%' ORDER BY zeitpunkt desc", zwi, adOpenKeyset, adLockReadOnly)
    Do
     If rEi.BOF Then Exit Do
@@ -527,6 +528,16 @@ Function doPatNameChange(frm As fürIcon)
     frm.Fußstatus = REPLACE(REPLACE(Auszug, "A.tib.post.:", "A.t.p.:"), "Puls der re A.dors.ped.:", vbCrLf & "A.d.p.:")
     Exit Do
    Loop
+#Else
+   Call rEi.Open("SELECT 'Pulsstatus:'ÜS,GROUP_CONCAT(CONCAT(DATE_FORMAT(zeitpunkt,'%e.%c.%y: Atp re: '),PulsAtp_re,', li: ',PulsAtp_li,', Adp re: ',PulsAdp_re,', li: ',PulsAdp_li,' (',Mitarbeiter,')')ORDER BY zeitpunkt DESC SEPARATOR'\r\n'LIMIT 2)Auszug FROM usdm WHERE pat_id=" & Pat_id & ";", zwi, adOpenKeyset, adLockReadOnly)
+   If Not rEi.BOF Then
+    frm.FußstatusBez = rEi!ÜS
+    On Error Resume Next
+    frm.Fußstatus = rEi!Auszug
+    If Err.Number = 0 Then Auszug = " "
+    On Error GoTo fehler
+   End If
+#End If
    If Auszug = vNS Then
     rEi.Close
     zwi = QuelCStr
@@ -542,9 +553,9 @@ Function doPatNameChange(frm As fürIcon)
    rEi.Close
    zwi = QuelCStr
    frm.Doppler = vNS
-   Call rEi.Open("SELECT * FROM `eintraege` where pat_id = " & Pat_id & " and art in (""doppler"",""duplex"") and inhalt not like ""%vene%"" and not inhalt like ""%halsschlag%"" and not inhalt like ""%caroti%"" ORDER BY zeitpunkt desc", zwi, adOpenKeyset, adLockReadOnly)
+   Call rEi.Open("SELECT CASE art WHEN'dop'THEN'Doppler'WHEN'dup'THEN'Duplex'ELSE art END artn,e.* FROM `eintraege` e where pat_id = " & Pat_id & " and art RLIKE '^d[ou]p' and inhalt not like ""%vene%"" and not inhalt like ""%halsschlag%"" and not inhalt like ""%caroti%"" ORDER BY zeitpunkt desc", zwi, adOpenKeyset, adLockReadOnly)
    If Not rEi.BOF Then
-    frm.Dopplerlabel = UCase(Left(rEi!art, 1)) + Mid(rEi!art, 2) + " vom " + Format(rEi!zeitpunkt, "dd.mm.yy:")
+    frm.Dopplerlabel = rEi!artn + " vom " + Format(rEi!zeitpunkt, "dd.mm.yy:")
     Do While Not rEi.EOF
      frm.Doppler = frm.Doppler + UCase(Left(rEi!art, 1)) + Mid(rEi!art, 2) + " " + Format(rEi!zeitpunkt, "dd.mm.yy:") + ": " + rEi!Inhalt + vbCrLf
      rEi.Move 1

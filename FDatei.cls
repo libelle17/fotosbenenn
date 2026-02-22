@@ -448,6 +448,7 @@ Public Sub SchreibDatenSatz()
   Dim testAdo As ADODB.Recordset
   Dim tAdo As New ADODB.Recordset
   Dim i%, pka%
+  Const p1$ = "so"
   rspfad = altPfad
   On Error Resume Next
 '  rSteu.Bookmark = mvBM

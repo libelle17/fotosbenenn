@@ -311,7 +311,13 @@ Public Sub Init()
   RaiseEvent fortSchritt
   If FSO Is Nothing Then Set FSO = New FileSystemObject
   RaiseEvent getQuelle
+  On Error Resume Next
   Set Fls = FSO.GetFolder(Quelle).Files
+  If Err.Number Then
+   Quelle = REPLACE$(LCase$(Quelle), "p:\", "\\linux1\daten\patientendokumente\")
+   Set Fls = FSO.GetFolder(Quelle).Files
+  End If
+  On Error GoTo fehler
   fSGes = 0
   For Each Fil In Fls
    If Not Fil Like "*.modd" Then
