@@ -28,7 +28,7 @@ Function DatKop(frm As fürIcon, Dv$)
  Dim ZFoltmpStr$
  ZFoltmpStr = frm.Quelle
  If Right(ZFoltmpStr, 1) = "\" Then
-  ZFoltmpStr = Left(ZFoltmpStr, Len(ZFoltmpStr) - 1)
+  ZFoltmpStr = left(ZFoltmpStr, Len(ZFoltmpStr) - 1)
  End If
  ZFoltmpStr = ZFoltmpStr + " tmp"
  If FSO.FolderExists(ZFoltmpStr) Then
@@ -46,7 +46,7 @@ Function DatKop(frm As fürIcon, Dv$)
  Call LöscheOrdner(ZFolTmp.Path, frm)
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in DatKop/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in DatKop/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -57,7 +57,7 @@ End Function ' DatKop
 Function doBewegInRoot(Quelle As Folder, ArchPat As Folder, frm As fürIcon) ' mit "\"
  Dim ZFol As Folder, Fol As Folder, Fil As File
  Dim ZFolStr$
- Dim erg&, DArt%
+ Dim Erg&, DArt%
  On Error GoTo fehler
  For Each Fol In Quelle.SubFolders
   ZFolStr = ArchPat.Path '+ "\" + Fol.Name
@@ -84,7 +84,7 @@ Function doBewegInRoot(Quelle As Folder, ArchPat As Folder, frm As fürIcon) ' mi
  Next Fil
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doBeweginRoot/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doBeweginRoot/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -105,7 +105,7 @@ Function ErstelleOrdner(Vol$, frm As fürIcon, Optional unsicher%) As Folder
  Set ErstelleOrdner = FSO.CreateFolder(Vol)
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in ErstelleOrdner/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in ErstelleOrdner/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -126,7 +126,7 @@ Function LöscheOrdner(Vol$, frm As fürIcon, Optional unsicher%)
  Call FSO.DeleteFolder(Vol)
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in LöscheOrdner/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in LöscheOrdner/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -147,7 +147,7 @@ Function LöscheDatei(D1$, frm As fürIcon, Optional unsicher%)
  Call FSO.DeleteFile(D1)
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in LöscheDatei/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in LöscheDatei/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -223,7 +223,7 @@ Function doEnable(frm As fürIcon, Status%)
  frm.rueckgaengig.Enabled = Not E2
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doEnable/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doEnable/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -236,7 +236,7 @@ Function Rotier(Richtung, frm As fürIcon)
  On Error GoTo fehler
  Call frm.BeginWarten
  anf = frm.FDC(frm.FDC.indDat).Fil.Path
- tmp = Left(frm.FDC(frm.FDC.indDat).Fil.Path, Len(frm.FDC(frm.FDC.indDat).Fil.Path) - 4) + "_.jpg"
+ tmp = left(frm.FDC(frm.FDC.indDat).Fil.Path, Len(frm.FDC(frm.FDC.indDat).Fil.Path) - 4) + "_.jpg"
  If RotatejpgLossless(anf, tmp, Richtung) = -1 Then
   For FTe = 1 To 4
    If FTe <> 2 Then
@@ -253,7 +253,7 @@ Function Rotier(Richtung, frm As fürIcon)
  Call frm.EndeWarten
  Exit Function ' rotier
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in rotier/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in rotier/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -292,15 +292,15 @@ Function VerschiebeFI(D1$, D2$, frm As fürIcon, Optional DArt% = -1, Optional un
  If DArt <> 0 Then 'UCase(D2a) Like "*BILD####*" Or UCase(D2a) Like "*PICT####*" Then
   If Not D2a Like "*######## ######*" Then
    If D2a Like "*.???" Then
-    D2a = Left(D2a, Len(D2a) - 4) & Format(FileDateTime(D1), " yyyymmdd hhmmss") & Right(D2a, 4)
+    D2a = left(D2a, Len(D2a) - 4) & Format(FileDateTime(D1), " yyyymmdd hhmmss") & Right(D2a, 4)
    ElseIf D2a Like "*.??" Then
-    D2a = Left(D2a, Len(D2a) - 3) & Format(FileDateTime(D1), " yyyymmdd hhmmss") & Right(D2a, 3)
+    D2a = left(D2a, Len(D2a) - 3) & Format(FileDateTime(D1), " yyyymmdd hhmmss") & Right(D2a, 3)
    ElseIf D2a Like "*.?" Then
-    D2a = Left(D2a, Len(D2a) - 2) & Format(FileDateTime(D1), " yyyymmdd hhmmss") & Right(D2a, 2)
+    D2a = left(D2a, Len(D2a) - 2) & Format(FileDateTime(D1), " yyyymmdd hhmmss") & Right(D2a, 2)
    ElseIf D2a Like "*." Then
-    D2a = Left(D2a, Len(D2a) - 1) & Format(FileDateTime(D1), " yyyymmdd hhmmss") & Right(D2a, 1)
+    D2a = left(D2a, Len(D2a) - 1) & Format(FileDateTime(D1), " yyyymmdd hhmmss") & Right(D2a, 1)
    Else
-    D2a = Left(D2a, Len(D2a) - 0) & Format(FileDateTime(D1), " yyyymmdd hhmmss")
+    D2a = left(D2a, Len(D2a) - 0) & Format(FileDateTime(D1), " yyyymmdd hhmmss")
    End If
   End If
  End If
@@ -319,7 +319,7 @@ If InStrB(ErrDescription, "existiert bereits") > 0 Then
  Kill REPLACE(REPLACE(LCase(D2a), ".jpg", " vorher.jpg"), ".wav", " vorher.wav")
  Resume
 End If
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in VerschiebeFI/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in VerschiebeFI/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -363,7 +363,7 @@ ElseIf Bildlad = -2 Then
  frm.Picture2.Picture = LoadPicture(App.Path + "\..\icons\Mug of Tea.ico")
  Resume Next
 End If
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in DateiAnzeig/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in DateiAnzeig/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -387,7 +387,7 @@ Function doFindeNächstendPat(frm As fürIcon)
  End If
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doFindeNächstendPat/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doFindeNächstendPat/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -410,7 +410,7 @@ Function doFindeLetztendPat(frm As fürIcon)
  End If
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doFindeLetztendPat/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doFindeLetztendPat/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -425,7 +425,7 @@ Function doVorwärtsCmd(frm As fürIcon)
  ' Call frm.FDC(frm.FDC.indDat).DateiLad(frm)
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doVorwärtsCmd/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doVorwärtsCmd/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -440,7 +440,7 @@ Function doRückwärtsCmd(frm As fürIcon)
 ' Call frm.FDC(frm.FDC.indDat).DateiLad(frm)
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doRückwärtsCmd/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doRückwärtsCmd/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -448,12 +448,12 @@ End Select
 End Function ' doRückwärtsCmd
 
 Function Key(KeyCode%, Shift%, frm As fürIcon)
- Dim erg&
+ Dim Erg&
  On Error GoTo fehler
  If KeyCode = 27 Then
     If frm.KörperTeil.ListCount > 0 Then
-     erg = MsgBox("Wollen Sie wirklich abbrechen?", vbYesNo, "Sicherheitsrückfrage")
-     If erg = vbNo Then Exit Function
+     Erg = MsgBox("Wollen Sie wirklich abbrechen?", vbYesNo, "Sicherheitsrückfrage")
+     If Erg = vbNo Then Exit Function
     End If
     frm.Visible = False
     Call frm.ValidateControls
@@ -466,7 +466,7 @@ Function Key(KeyCode%, Shift%, frm As fürIcon)
 ' If KeyCode = 34 Then Call doVorwärtsCmd(frm) <- stellt den aktuellen Feldinhalt falsch ein!
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in key/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in key/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -481,7 +481,7 @@ Function doersterOffenerCmd(frm As fürIcon)
 ' Call frm.FDC(frm.FDC.indDat).DateiLad(frm)
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doersterOffenerCmd/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doersterOffenerCmd/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -521,7 +521,7 @@ Function doPatNameChange(frm As fürIcon)
     If pos > 0 Then
      Auszug = Mid(Inh, pos)
      If pos2 > 0 Then
-      Auszug = Left(Auszug, pos2 - pos)
+      Auszug = left(Auszug, pos2 - pos)
      End If
     End If
     frm.FußstatusBez = "Pulsstatus vom " & rEi!zeitpunkt & ":"
@@ -553,11 +553,11 @@ Function doPatNameChange(frm As fürIcon)
    rEi.Close
    zwi = QuelCStr
    frm.Doppler = vNS
-   Call rEi.Open("SELECT CASE art WHEN'dop'THEN'Doppler'WHEN'dup'THEN'Duplex'ELSE art END artn,e.* FROM `eintraege` e where pat_id = " & Pat_id & " and art RLIKE '^d[ou]p' and inhalt not like ""%vene%"" and not inhalt like ""%halsschlag%"" and not inhalt like ""%caroti%"" ORDER BY zeitpunkt desc", zwi, adOpenKeyset, adLockReadOnly)
+   Call rEi.Open("SELECT CASE art WHEN'dop'THEN'Doppler'WHEN'dup'THEN'Duplex'ELSE art END artn,e.* FROM `eintraege` e WHERE pat_id = " & Pat_id & " and art RLIKE '^d[ou]p' and (inhalt not like '%vene%' or inhalt LIKE '%venengl%') and not inhalt like ""%halsschlag%"" and not inhalt like ""%caroti%"" ORDER BY zeitpunkt desc", zwi, adOpenKeyset, adLockReadOnly)
    If Not rEi.BOF Then
     frm.Dopplerlabel = rEi!artn + " vom " + Format(rEi!zeitpunkt, "dd.mm.yy:")
     Do While Not rEi.EOF
-     frm.Doppler = frm.Doppler + UCase(Left(rEi!art, 1)) + Mid(rEi!art, 2) + " " + Format(rEi!zeitpunkt, "dd.mm.yy:") + ": " + rEi!Inhalt + vbCrLf
+     frm.Doppler = frm.Doppler + UCase(left(rEi!art, 1)) + Mid(rEi!art, 2) + " " + Format(rEi!zeitpunkt, "dd.mm.yy:") + ": " + rEi!Inhalt + vbCrLf
      rEi.Move 1
     Loop
    End If
@@ -575,7 +575,7 @@ Function doPatNameChange(frm As fürIcon)
  End If
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doPatNameChange/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doPatNameChange/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -620,7 +620,7 @@ Function doWieLetztesdPat(frm As fürIcon, Optional obnächster% = 0)
  End If
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doWieLetztesdPat/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doWieLetztesdPat/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -638,7 +638,7 @@ Function doWieNächstes(frm As fürIcon)
  End If
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doWieVoriges/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doWieVoriges/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -656,7 +656,7 @@ Function doWieVoriges(frm As fürIcon)
  End If
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doWieVoriges/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doWieVoriges/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -685,7 +685,7 @@ Function doWieAnderes(frm As fürIcon)
       zahl = Mid(frm.PatName, i + 2, Len(frm.PatName) - i - 2)
       On Error GoTo fehler
       If zahl > 0 Then
-       frm.PatName = Left(frm.PatName, i - 1) + " (" + CStr(zahl + 1) + ")"
+       frm.PatName = left(frm.PatName, i - 1) + " (" + CStr(zahl + 1) + ")"
       Else
        frm.PatName = frm.PatName + " (1)"
       End If
@@ -714,7 +714,7 @@ Function doWieAnderes(frm As fürIcon)
   Call frm.FDC(frm.FDC.indDat).findeSatz
   Exit Function
 fehler:
- Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doWieAnderes/" + App.Path)
+ Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in doWieAnderes/" + App.Path)
   Case vbAbort: Call MsgBox("Höre auf"): End
   Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
   Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -740,7 +740,7 @@ Public Function do_Form_Unload(frm As fürIcon)
  Call DForm_Unload(0)
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in do_Form_Unload/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in do_Form_Unload/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -800,7 +800,7 @@ Public Function HolReg(frm As fürIcon)
 ' frm.Eingel = GetReg(1, RegStelle, "Eingel")
 Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in HolReg/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in HolReg/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -841,7 +841,7 @@ Public Function do_Form_Load(frm As fürIcon)
  Call Drehen.DForm_Load
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in do_Form_Load/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in do_Form_Load/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -886,7 +886,7 @@ Const opti& = 2 + 4 '+ 8   ' 131118, 32 ' 1 + 2048 + 16384 + 131072
  frm.CnStr.Caption = frm.dbv.Constr
 Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in do_Form_Load/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in do_Form_Load/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -899,7 +899,7 @@ Function ArmstrongText$(frm As fürIcon, WA$)
  If Len(WA) > 1 Then
   ArmstrongText = Mid(WA, 2, 1)
   For i = 0 To frm.Armstrong.ListCount - 1
-   If UCase(ArmstrongText) = Left(frm.Armstrong.List(i), 1) Then
+   If UCase(ArmstrongText) = left(frm.Armstrong.List(i), 1) Then
     ArmstrongText = frm.Armstrong.List(i)
     Exit For
    End If
@@ -907,7 +907,7 @@ Function ArmstrongText$(frm As fürIcon, WA$)
  End If
   Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in ArmstrongText/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in ArmstrongText/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -919,7 +919,7 @@ Function WagnerText$(frm As fürIcon, WA$)
  If Len(WA) > 0 Then
   WagnerText = Mid(WA, 1, 1)
   For i = 0 To frm.Wagner.ListCount - 1
-   If WagnerText = Left(frm.Wagner.List(i), 1) Then
+   If WagnerText = left(frm.Wagner.List(i), 1) Then
     WagnerText = frm.Wagner.List(i)
     Exit For
    End If
@@ -927,7 +927,7 @@ Function WagnerText$(frm As fürIcon, WA$)
  End If
   Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in WagnerText/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in WagnerText/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -948,7 +948,7 @@ Public Sub do_Start(frm As fürIcon)
  frm.Status.Picture = LoadPicture(App.Path + "\..\icons\info.ico")
  
  If frm.Lw.ListIndex < frm.Lw.ListCount - 1 Then
-  Call DatKop(frm, Left(frm.Lw.List(frm.Lw.ListIndex), 1))
+  Call DatKop(frm, left(frm.Lw.List(frm.Lw.ListIndex), 1))
  End If
  
  Set frm.FDC = New FDateiColl
@@ -969,7 +969,7 @@ Public Sub do_Start(frm As fürIcon)
  End If
  Exit Sub
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in do_Start/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in do_Start/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -1031,7 +1031,7 @@ Sub Auswahlen(frm As fürIcon)
  
  Exit Sub
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in Auswahlen/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in Auswahlen/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
@@ -1064,7 +1064,7 @@ Function AuswName(frm As fürIcon)
  Loop
  Exit Function
 fehler:
-Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.source), vNS, CStr(Err.source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in AuswName/" + App.Path)
+Select Case MsgBox("FNr: " + CStr(Err.Number) + vbCrLf + "LastDLLError: " + CStr(Err.LastDllError) + vbCrLf + "Source: " + IIf(IsNull(Err.Source), vNS, CStr(Err.Source)) + vbCrLf + "Description: " + Err.Description + vbCrLf + "Fehlerposition: " + CStr(FPos), vbAbortRetryIgnore, "Aufgefangener Fehler in AuswName/" + App.Path)
  Case vbAbort: Call MsgBox("Höre auf"): End
  Case vbRetry: Call MsgBox("Versuche nochmal"): Resume
  Case vbIgnore: Call MsgBox("Setze fort"): Resume Next
